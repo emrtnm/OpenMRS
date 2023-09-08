@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="mySuit" parallel="tests" thread-count="3">
+    <test name="baseTest">
+        <parameter name="webDriver" value="chrome"></parameter>
+
+        <classes>
+            <class name="Main"/>
+        </classes>
+    </test>
+</suite>
