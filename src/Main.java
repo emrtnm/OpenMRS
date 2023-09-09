@@ -1,13 +1,12 @@
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.PageFactoryFinder;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -19,13 +18,14 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
     public WebDriver driver;
     public WebDriverWait wait;
-    public String baseUrl = "https://demo.openmrs.org/";
+    public String baseUrl = "https://openmrs.org/";
     public TakesScreenshot ts;
     public POMElements elements;
 
@@ -84,4 +84,77 @@ public class Main {
     public void close() {
         driver.quit();
     }
-}
+
+    // @assigned=Ümit Boyraz
+    @Test
+    void US1CheckingLoginErrors01 () throws InterruptedException {
+        Assert.assertTrue(driver.getCurrentUrl().equals("https://openmrs.org/"),"Wrong website!");
+        elements.demoButton.click();
+        elements.exploreOpenMrs2Button.click();
+        Thread.sleep(2000);
+        elements.enterTheOpenMrs2DemoButton.click();
+        Assert.assertTrue(driver.getCurrentUrl().equals("https://demo.openmrs.org/openmrs/login.htm"),"You are not on a login page");
+
+    }
+    @Test (dataProvider = "userBilgileri")
+    void US1CheckingLoginErrors02 (String username, String password) throws InterruptedException {
+        elements.demoButton.click();
+        elements.exploreOpenMrs2Button.click();
+        Thread.sleep(2000);
+        elements.enterTheOpenMrs2DemoButton.click();
+
+        elements.loginUsername.sendKeys(username);
+        elements.loginPassword.sendKeys(password);
+        elements.loginButton.click();
+        Assert.assertTrue(elements.loginErrorMessage1.getText().contains("You must choose a location!"),"Location was choosen");
+    }
+        @DataProvider
+        Object[][] userBilgileri() {
+            Object[][] data = {
+                    // negatif bilgilerim
+                    {"",""},// boþ
+                    {"Admin", ""}, // 1 doðru 2 yanlýþ
+                    {"", "Admin123"}, // 1 yanlýþ 2 doðru
+                    {"admin", "admin123"}, // 1 yanlýþ 2 yanlýþ
+            };
+
+            return data;
+    }
+    @Test (dataProvider = "userData")
+    void US1CheckingLoginErrors03 (String username, String password) throws InterruptedException {
+        elements.demoButton.click();
+        elements.exploreOpenMrs2Button.click();
+        Thread.sleep(2000);
+        elements.enterTheOpenMrs2DemoButton.click();
+
+        elements.loginUsername.sendKeys(username);
+        elements.loginPassword.sendKeys(password);
+        elements.location.click();
+        elements.loginButton.click();
+        Assert.assertTrue(elements.loginErrorMessage2.getText().contains("Invalid username/password. Please try again."),"Valid Username");
+    }
+    @DataProvider
+    Object[][] userData() {
+        Object[][] data = {
+                // negatif bilgilerim
+                {"",""},// boþ
+                {"Admin", ""}, // 1 doðru 2 yanlýþ
+                {"", "Admin123"}, // 1 yanlýþ 2 doðru
+                {"admin", "admin123"}, // 1 yanlýþ 2 yanlýþ
+        };
+
+        return data;
+    }
+
+    // @assigned=Ümit Boyraz
+    @Test
+    void US2Login() {
+
+    }
+    // @assigned=Ümit Boyraz
+    @Test
+    void US3LogOut() {
+
+    }
+
+    }
