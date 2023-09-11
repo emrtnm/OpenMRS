@@ -40,6 +40,12 @@ public class POMElements {
     @FindBy(id = "loginButton")
     public WebElement login;
 
+    @FindBy(xpath = "//*[@id='content']//h4")
+    public WebElement locationMessage;
+
+    @FindBy(xpath = "//*[@class='nav-item logout']/a")
+    public WebElement logoutButton;
+
     @FindBy(id = "Inpatient Ward")
     public WebElement inpatientWard;
 

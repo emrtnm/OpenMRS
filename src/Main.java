@@ -128,49 +128,41 @@ public class Main {
         driver.quit();
     }
 
-    // @assigned=Ümit Boyraz
-    @Test
-    void US1CheckingLoginErrors01 () throws InterruptedException {
+    public void loginPage() throws InterruptedException {
         Assert.assertTrue(driver.getCurrentUrl().equals("https://openmrs.org/"),"Wrong website!");
         elements.demoButton.click();
         elements.exploreOpenMrs2Button.click();
         Thread.sleep(2000);
         elements.enterTheOpenMrs2DemoButton.click();
-        Assert.assertTrue(driver.getCurrentUrl().equals("https://demo.openmrs.org/openmrs/login.htm"),"You are not on a login page");
-
     }
-  
+
+    // @assigned=Ümit Boyraz
     @Test (dataProvider = "userBilgileri")
-    void US1CheckingLoginErrors02 (String username, String password) throws InterruptedException {
-        elements.demoButton.click();
-        elements.exploreOpenMrs2Button.click();
-        Thread.sleep(2000);
-        elements.enterTheOpenMrs2DemoButton.click();
+    void US1CheckingLoginErrors01 (String username, String password) throws InterruptedException {
+
+        loginPage();
+        Assert.assertTrue(driver.getCurrentUrl().equals("https://demo.openmrs.org/openmrs/login.htm"),"You are not on a login page");
 
         elements.loginUsername.sendKeys(username);
         elements.loginPassword.sendKeys(password);
         elements.loginButton.click();
         Assert.assertTrue(elements.loginErrorMessage1.getText().contains("You must choose a location!"),"Location was choosen");
     }
-        @DataProvider
-        Object[][] userBilgileri() {
-            Object[][] data = {
-                    // negatif bilgilerim
-                    {"",""},// bo�
-                    {"Admin", ""}, // 1 do�ru 2 yanl��
-                    {"", "Admin123"}, // 1 yanl�� 2 do�ru
-                    {"admin", "admin123"}, // 1 yanl�� 2 yanl��
-            };
+    @DataProvider
+    Object[][] userBilgileri() {
+        Object[][] data = {
 
-            return data;
+                {"",""},
+                {"Admin", ""},
+                {"", "Admin123"},
+                {"admin", "admin123"},
+        };
+
+        return data;
     }
-  
     @Test (dataProvider = "userData")
     void US1CheckingLoginErrors03 (String username, String password) throws InterruptedException {
-        elements.demoButton.click();
-        elements.exploreOpenMrs2Button.click();
-        Thread.sleep(2000);
-        elements.enterTheOpenMrs2DemoButton.click();
+        loginPage();
 
         elements.loginUsername.sendKeys(username);
         elements.loginPassword.sendKeys(password);
@@ -178,29 +170,36 @@ public class Main {
         elements.loginButton.click();
         Assert.assertTrue(elements.loginErrorMessage2.getText().contains("Invalid username/password. Please try again."),"Valid Username");
     }
-  
     @DataProvider
     Object[][] userData() {
         Object[][] data = {
-                // negatif bilgilerim
-                {"",""},// bo�
-                {"Admin", ""}, // 1 do�ru 2 yanl��
-                {"", "Admin123"}, // 1 yanl�� 2 do�ru
-                {"admin", "admin123"}, // 1 yanl�� 2 yanl��
+
+                {"",""},
+                {"Admin", ""},
+                {"", "Admin123"},
+                {"admin", "admin123"},
         };
 
         return data;
     }
 
-    // @assigned=�mit Boyraz
+    // @assigned=Ümit Boyraz
     @Test
-    void US2Login() {
-
+    void US2LoginAndUS03Logout() throws InterruptedException {
+        loginPage();
+        elements.loginUsername.sendKeys("Admin");
+        elements.loginPassword.sendKeys("Admin123");
+        elements.location.click();
+        elements.loginButton.click();
+        Assert.assertTrue(driver.getCurrentUrl().contains("https://demo.openmrs.org/openmrs/referenceapplication/home.page"),"You couldn't login!");
+        Assert.assertTrue(elements.locationMessage.getText().contains("Logged in as Super User (admin)"));
+        elements.logoutButton.click();
+        Assert.assertTrue(driver.getCurrentUrl().contains("https://demo.openmrs.org/openmrs/login.htm"),"You couldn't logout!");
     }
-    // @assigned=�mit Boyraz
-    @Test
+    // @assigned=Ümit Boyraz
+    @Test (enabled = false)
     void US3LogOut() {
-
+        // US03LogOut is merged with US02Login
     }
 
     }
@@ -209,4 +208,3 @@ public class Main {
 //    public void close() {
 //        driver.quit();
 //    }
-}
