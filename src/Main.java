@@ -7,9 +7,11 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.io.IOException;
@@ -68,6 +70,46 @@ public class Main {
         driver.navigate().to(baseUrl);
     }
 
+    //SelenDilek
+    @Test
+    void US8(){
+
+        SoftAssert _softassert= new SoftAssert();
+        elements.loginUsername.sendKeys("admin");
+        elements.loginPassword.sendKeys("Admin123");
+        elements.inpatientWard.click();
+        elements.login.click();
+        elements.findPatientRecord.click();
+
+        System.out.println(elements.showingEntries.getText());
+        String[] n = elements.showingEntries.getText().trim().split(" ");
+        System.out.println(n.length);
+        int fifthElement = Integer.parseInt(n[5]);
+        System.out.println("fifthElement = " + fifthElement);
+
+        int rows=0;
+        int pageNumberss=elements.pageNumbers.size();
+        for (int i = pageNumberss-1; i >=0; i--) {
+            elements.pageNumbers.get(i).click();
+            System.out.println("rows = " + rows);
+
+                for (WebElement pageRows : elements.Pagerows) {
+
+                    rows++;
+
+                }
+
+
+        }
+        System.out.println(rows);
+
+        _softassert.assertEquals(rows,fifthElement);
+
+        _softassert.assertAll();
+
+    }
+
+
     public static void SaveScreenshot(File source, String prefix) throws IOException
     {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
@@ -80,12 +122,13 @@ public class Main {
         FileUtils.copyFile(source, new File(target + "/src/screenshots/" + fileName));
     }
 
+
     @AfterClass
     public void close() {
         driver.quit();
     }
 
-    // @assigned=Ümit Boyraz
+    // @assigned=Ãœmit Boyraz
     @Test
     void US1CheckingLoginErrors01 () throws InterruptedException {
         Assert.assertTrue(driver.getCurrentUrl().equals("https://openmrs.org/"),"Wrong website!");
@@ -96,6 +139,7 @@ public class Main {
         Assert.assertTrue(driver.getCurrentUrl().equals("https://demo.openmrs.org/openmrs/login.htm"),"You are not on a login page");
 
     }
+  
     @Test (dataProvider = "userBilgileri")
     void US1CheckingLoginErrors02 (String username, String password) throws InterruptedException {
         elements.demoButton.click();
@@ -112,14 +156,15 @@ public class Main {
         Object[][] userBilgileri() {
             Object[][] data = {
                     // negatif bilgilerim
-                    {"",""},// boþ
-                    {"Admin", ""}, // 1 doðru 2 yanlýþ
-                    {"", "Admin123"}, // 1 yanlýþ 2 doðru
-                    {"admin", "admin123"}, // 1 yanlýþ 2 yanlýþ
+                    {"",""},// boï¿½
+                    {"Admin", ""}, // 1 doï¿½ru 2 yanlï¿½ï¿½
+                    {"", "Admin123"}, // 1 yanlï¿½ï¿½ 2 doï¿½ru
+                    {"admin", "admin123"}, // 1 yanlï¿½ï¿½ 2 yanlï¿½ï¿½
             };
 
             return data;
     }
+  
     @Test (dataProvider = "userData")
     void US1CheckingLoginErrors03 (String username, String password) throws InterruptedException {
         elements.demoButton.click();
@@ -133,28 +178,35 @@ public class Main {
         elements.loginButton.click();
         Assert.assertTrue(elements.loginErrorMessage2.getText().contains("Invalid username/password. Please try again."),"Valid Username");
     }
+  
     @DataProvider
     Object[][] userData() {
         Object[][] data = {
                 // negatif bilgilerim
-                {"",""},// boþ
-                {"Admin", ""}, // 1 doðru 2 yanlýþ
-                {"", "Admin123"}, // 1 yanlýþ 2 doðru
-                {"admin", "admin123"}, // 1 yanlýþ 2 yanlýþ
+                {"",""},// boï¿½
+                {"Admin", ""}, // 1 doï¿½ru 2 yanlï¿½ï¿½
+                {"", "Admin123"}, // 1 yanlï¿½ï¿½ 2 doï¿½ru
+                {"admin", "admin123"}, // 1 yanlï¿½ï¿½ 2 yanlï¿½ï¿½
         };
 
         return data;
     }
 
-    // @assigned=Ümit Boyraz
+    // @assigned=ï¿½mit Boyraz
     @Test
     void US2Login() {
 
     }
-    // @assigned=Ümit Boyraz
+    // @assigned=ï¿½mit Boyraz
     @Test
     void US3LogOut() {
 
     }
 
     }
+
+//    @AfterClass
+//    public void close() {
+//        driver.quit();
+//    }
+}

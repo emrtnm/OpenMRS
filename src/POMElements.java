@@ -36,6 +36,22 @@ public class POMElements {
 
     @FindBy(xpath = "//*[@id='error-message']")
     public WebElement loginErrorMessage2;
+  
+    @FindBy(id = "loginButton")
+    public WebElement login;
 
+    @FindBy(id = "Inpatient Ward")
+    public WebElement inpatientWard;
+
+    @FindBy (linkText = "Find Patient Record")
+    public WebElement findPatientRecord;
+
+    @FindBy(css = "div[id='patient-search-results-table_paginate'] >span>a[tabindex]")
+    public  List<WebElement> pageNumbers;
+    @FindBy(css = "tbody[role='alert']>tr")
+    public List<WebElement> Pagerows;
+
+    @FindBy(id = "patient-search-results-table_info")
+    public WebElement showingEntries;
 
 }
