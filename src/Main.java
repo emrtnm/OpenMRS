@@ -156,6 +156,72 @@ public class Main {
         String text=driver.getPageSource();
         Assert.assertTrue(text.contains("100ROW") && text.contains("100TPL"), "Metinler bulunamadı.");
     }
+    @Test
+    public void Us6(){
+
+        elements.loginUsername.sendKeys("Admin");
+        elements.loginPassword.sendKeys("Admin123");
+        elements.inpatientWard.click();
+        elements.loginButton.click();
+        elements.findPatientBtn.click();
+        elements.search.sendKeys("AYŞE FATMA");
+        elements.patient.click();
+
+        Assert.assertTrue(elements.control6.getText().equals("DIAGNOSES"));
+
+    }
+
+
+
+
+    @Test
+    public void Us6Negative(){
+
+
+        elements.loginUsername.sendKeys("Admin");
+        elements.loginPassword.sendKeys("Admin123");
+        elements.inpatientWard.click();
+        elements.loginButton.click();
+        elements.findPatientBtn.click();
+        elements.search.sendKeys("Jonathan Rae");
+
+        Assert.assertTrue(elements.negativeControl6.getText().contains("No matching records found"));
+
+    }
+
+    @Test
+    public void Us7(){
+
+
+        elements.loginUsername.sendKeys("Admin");
+        elements.loginPassword.sendKeys("Admin123");
+        elements.inpatientWard.click();
+        elements.loginButton.click();
+        elements.findPatientBtn.click();
+        elements.search.sendKeys("AYŞE FATMA");
+        elements.patient.click();
+        elements.deletePatient.click();
+        elements.reason.sendKeys("YES");
+        elements.confirmButton.click();
+
+        Assert.assertTrue(elements.deleteMsg.getText().contains("Patient has been deleted successfully"));
+
+
+    }
+
+    @Test
+    public void Us7Negative(){
+
+        elements.loginUsername.sendKeys("Admin");
+        elements.loginPassword.sendKeys("Admin123");
+        elements.inpatientWard.click();
+        elements.loginButton.click();
+        elements.findPatientBtn.click();
+        elements.search.sendKeys("Jonathan Rae");
+
+        Assert.assertTrue(elements.negativeControl6.getText().contains("No matching records found"));
+
+    }
   
     //SelenDilek
     @Test
