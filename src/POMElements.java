@@ -234,7 +234,7 @@ public class POMElements {
     //@FindBy(css= "input#fr5049-field[name='givenName']")
     //public WebElement givenName;
 
-   /* @FindBy(css = "div[id='patient-search-results-table_paginate'] >span>a[tabindex]")
+  @FindBy(css = "div[id='patient-search-results-table_paginate'] >span>a[tabindex]")
     public List<WebElement> pageNumbers;
     @FindBy(css = "tbody[role='alert']>tr")
     public List<WebElement> Pagerows;
@@ -252,7 +252,7 @@ public class POMElements {
     public WebElement loginErrorMessage2;
   
     @FindBy(id = "loginButton")
-    public WebElement login;
+    public WebElement login2;
 
     @FindBy(xpath = "//*[@id='content']//h4")
     public WebElement locationMessage;
@@ -267,14 +267,41 @@ public class POMElements {
     public WebElement findPatientRecord;
 
     @FindBy(css = "div[id='patient-search-results-table_paginate'] >span>a[tabindex]")
-    public  List<WebElement> pageNumbers;
+    public  List<WebElement> pageNumbers2;
     @FindBy(css = "tbody[role='alert']>tr")
-    public List<WebElement> Pagerows;
+    public List<WebElement> Pagerows2;
 
     @FindBy(id = "patient-search-results-table_info")
     public WebElement showingEntries;
 
     @FindBy(id = "patient-search-results-table_info")
-    public WebElement showingEntries;
-    //mundanyokarsyuytgedi*/
+    public WebElement showingEntries2;
+
+
+    @FindBy(id = "org.openmrs.module.coreapps.deletePatient")
+    public WebElement deletePatient;
+
+    @FindBy(id = "delete-reason")
+    public WebElement reason;
+    @FindBy(xpath = "(//button[@class='confirm right'][text()='Confirm'])[4]")
+    public WebElement confirmButton;
+
+    @FindBy(xpath = "//div[@class='toast-container toast-position-top-right']//p")
+    public WebElement deleteMsg;
+
+    @FindBy(id = "coreapps-activeVisitsHomepageLink-coreapps-activeVisitsHomepageLink-extension")
+    public WebElement findPatientBtn;
+
+    @FindBy(id = "patient-search")
+    public WebElement search;
+
+    @FindBy(css = "[class=odd]")
+    public WebElement patient;
+
+    @FindBy(xpath = "//*[@id='coreapps-diagnosesList']//h3")
+    public WebElement control6;
+
+    @FindBy(xpath = "//td[@class='dataTables_empty'][text()='No matching records found']")
+    public WebElement negativeControl6;
+
 }
