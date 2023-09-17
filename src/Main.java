@@ -54,6 +54,7 @@ public class Main {
                 break;
         }
 
+
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
@@ -66,6 +67,29 @@ public class Main {
     @BeforeMethod
     void openUri() {
         driver.navigate().to(baseUrl);
+    }
+    @Test
+    void US10() {
+
+        elements.AppointmentScheduling.click ();
+        elements.ManageAppointments.click ();
+
+        //o anki kayıtlı hastayı almak istedim fakat tam olmadı
+        //elements.PatientID.sendKeys (elements.PatientName.getText ());
+
+        elements.PatientID.sendKeys ("sam");
+
+        try {
+            Thread.sleep (3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException (e);
+        }
+        elements.PatientClaer.click ();
+
+
+        Assert.assertTrue (elements.Control.getText ().contains ("Your computer is not set to the right time zone."));
+
+
     }
 
     public static void SaveScreenshot(File source, String prefix) throws IOException
