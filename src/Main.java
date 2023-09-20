@@ -281,7 +281,7 @@ public class Main {
     }
 
     // @assigned=Ümit Boyraz
-    @Test (enabled = false)//(dataProvider = "userBilgileri")
+    @Test//(dataProvider = "userBilgileri")
     void US1CheckingLoginErrors01(String username, String password) throws InterruptedException {
 
         loginPage();
@@ -307,7 +307,7 @@ public class Main {
         return data;
     }
 
-    @Test (enabled = false)//(dataProvider = "userData")
+    @Test
     void US1CheckingLoginErrors02(String username, String password) throws InterruptedException {
 
         loginPage();
@@ -339,7 +339,7 @@ public class Main {
     }
 
     // @assigned=Ümit Boyraz
-    @Test (enabled = false)
+    @Test
     void US2LoginAndUS03Logout() throws InterruptedException {
 
         loginPage();
@@ -359,7 +359,7 @@ public class Main {
     }
 
     // @assigned=Ümit Boyraz
-    @Test(enabled = false)
+    @Test
     void US3LogOut() {
         // US03LogOut is merged by US02Login
     }
@@ -569,7 +569,7 @@ public class Main {
     }
 
     // @assigned=Emrullah Tanıma
-    @Test (enabled = false)
+    @Test
     void US5MyAccount() throws InterruptedException {
         loginPage();
         elements.loginUsername.sendKeys("Admin");
