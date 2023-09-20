@@ -1,4 +1,4 @@
-import com.sun.org.apache.bcel.internal.generic.Select;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -303,5 +303,144 @@ public class POMElements {
 
     @FindBy(xpath = "//td[@class='dataTables_empty'][text()='No matching records found']")
     public WebElement negativeControl6;
+
+    @FindBy(xpath = "//*[@id='sessionLocation']/li")
+    public List<WebElement> locations;
+
+    @FindBy(xpath = "//*[@id='referenceapplication-registrationapp-registerPatient-homepageLink-referenceapplication-registrationapp-registerPatient-homepageLink-extension']")
+    public WebElement registerApatientButton;
+
+    @FindBy(xpath = "//*[@name='givenName']")
+    public WebElement givenName;
+
+    @FindBy(xpath = "//*[@name='familyName']")
+    public WebElement familyName;
+
+    //@FindBy(xpath = "//*[@id='next-button']")
+    //public WebElement nextButton;
+
+    @FindBy(xpath = "//*[@for='gender-field']")
+    public WebElement genderQuestion;
+
+    @FindBy(xpath = "//*[@id='gender-field']")
+    public WebElement genderBox;
+
+    @FindBy(xpath = "//*[@id='gender-field']/option[2]")
+    public WebElement genderFemale;
+
+    @FindBy(xpath = "//*[@id='gender-field']/option[1]")
+    public WebElement genderMale;
+
+    @FindBy(xpath = "//*[@id='demographics-birthdate']//label")
+    public WebElement birthdateQuestion;
+
+    @FindBy(xpath = "//*[@id='prev-button']")
+    public WebElement previousButton;
+
+    @FindBy(xpath = "//*[@id='birthdateDay-field']")
+    public WebElement birthdateDay;
+
+    @FindBy(xpath = "//*[@id='birthdateMonth-field']")
+    public WebElement birthdateMonth;
+
+    @FindBy(xpath = "//*[@id='birthdateYear-field']")
+    public WebElement birthdateYear;
+
+    @FindBy(xpath = "//*[@id='null']//label")
+    public WebElement patientsAddress;
+
+    @FindBy(xpath = "//*[@id='birthdateYears-field']")
+    public WebElement estimatedYears;
+
+    @FindBy(xpath = "//*[@id='birthdateMonths-field']")
+    public WebElement estimatedMonths;
+
+    @FindBy(xpath = "(//*[@id='demographics-birthdate']//span)[2]")
+    public WebElement validDateAndRequiredMessage;
+
+    @FindBy(xpath = "(//*[@id='demographics-birthdate']//span)[4]")
+    public WebElement dayMinimumMessage;
+
+    @FindBy(xpath = "(//*[@id='demographics-birthdate']//span)[8]")
+    public WebElement yearMinimumMessage;
+
+    @FindBy(xpath = "//*[@id='birthdateYears-field']/following::span")
+    public WebElement EstimatedYearsMinimumMessage;
+
+    @FindBy(xpath = "//*[@id='birthdateMonths-field']/following::span")
+    public WebElement EstimatedMonthsMinimumMessage;
+
+    @FindBy(xpath = "//*[@id='null']/span")
+    public WebElement addressErrorMessage;
+
+    @FindBy(xpath = "//*[@id='address1']")
+    public WebElement address1Input;
+
+    @FindBy(xpath = "//*[@id='address2']")
+    public WebElement address2Input;
+
+    @FindBy(xpath = "//*[@id='cityVillage']")
+    public WebElement addressCityInput;
+
+    @FindBy(xpath = "//*[@id='stateProvince']")
+    public WebElement addressStateInput;
+
+    @FindBy(xpath = "//*[@id='country']")
+    public WebElement addressCountryInput;
+
+    @FindBy(xpath = "//*[@id='postalCode']")
+    public WebElement addressPostalCodeInput;
+
+    @FindBy(xpath = "//*[@id='phoneNumberLabel']//label")
+    public WebElement patientsPhoneNumberQuestion;
+
+    @FindBy(xpath = "//*[@name='phoneNumber']")
+    public WebElement patientsPhoneNumberInput;
+
+    @FindBy(xpath = "//*[@id='phoneNumberLabel']//span")
+    public WebElement patientsPhoneNumberMessage;
+
+    @FindBy(xpath = "//*[@id='null']/h3")
+    public WebElement patientRelatedTo;
+
+    @FindBy(xpath = "//*[@id='relationship_type']")
+    public WebElement relationshipDropbox;
+
+    @FindBy(xpath = "(//*[@id='relationship_type'])[2]")
+    public WebElement secondRelationshipDropbox;
+
+    @FindBy(xpath = "//*[@placeholder='Person Name']")
+    public WebElement personName;
+
+    @FindBy(xpath = "//*[@id='submit']")
+    public WebElement confirmButton1;
+
+    @FindBy(xpath = "//*[@id='cancelSubmission']")
+    public WebElement cancelButton;
+
+    @FindBy(xpath = "(//*[@ng-click='addNewRelationship()'])[1]")
+    public WebElement plusButton;
+
+    @FindBy(xpath = "(//*[@ng-click='removeRelationship(relationship)'])[2]")
+    public WebElement minusButton;
+
+    @FindBy(xpath = "//*[@id='breadcrumbs']")
+    public WebElement nameMessage;
+
+    @FindBy(xpath = "//*[@class='float-sm-right']/span")
+    public WebElement patientId;
+
+    @FindBy(xpath = "//*[@class='nav-item identifier']")
+    public WebElement adminHooverIcon;
+
+    @FindBy(xpath = "//*[@id='user-account-menu']//a")
+    public WebElement hooverMessage;
+
+    @FindBy(xpath = "(//*[@id='tasks']/a)[1]")
+    public WebElement changePasswordButton;
+
+    @FindBy(xpath = "(//*[@id='tasks']/a)[2]")
+    public WebElement myLanguagesButton;
+
 
 }
