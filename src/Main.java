@@ -281,7 +281,7 @@ public class Main {
     }
 
     // @assigned=Ümit Boyraz
-    @Test//(dataProvider = "userBilgileri")
+    @Test(dataProvider = "userBilgileri")
     void US1CheckingLoginErrors01(String username, String password) throws InterruptedException {
 
         loginPage();
@@ -307,7 +307,7 @@ public class Main {
         return data;
     }
 
-    @Test
+    @Test(dataProvider = "userData")
     void US1CheckingLoginErrors02(String username, String password) throws InterruptedException {
 
         loginPage();
