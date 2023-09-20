@@ -568,6 +568,7 @@ public class Main {
         _softAssert.assertAll();
     }
 
+
     // @assigned=Emrullah Tanıma
     @Test
     void US5MyAccount() throws InterruptedException {
@@ -595,4 +596,60 @@ public class Main {
 
         _softAssert.assertAll();
     }
+    @Test
+    void US10() {
+
+        elements.loginUsername.sendKeys ("Admin");
+        elements.loginPassword.sendKeys ("Admin123");
+        elements.location.click ();
+        elements.login.click ();
+
+        elements.RegisterApatient.click ();
+        elements.givenName.sendKeys ("Sam");
+        elements.familyName.sendKeys ("Freeman");
+
+        elements.nextbutton.click ();
+        elements.genderfield.click ();
+        elements.gender.click ();
+        elements.nextbutton.click ();
+
+        elements.birthdateDay.sendKeys ("1");
+        elements.birthdateMonth.click ();
+        elements.birthdateMonthSlect.click ();
+        elements.birthdateYear.sendKeys ("1990");
+
+        elements.nextbutton.click ();
+        elements.PatientAdress.sendKeys ("Finlandiya,Helsinki");
+
+        elements.nextbutton.click ();
+        elements.nextbutton.click ();
+        elements.nextbutton.click ();
+        elements.Confirm.click ();
+
+        try {
+            Thread.sleep (3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException (e);
+        }
+        elements.iconregister.click ();
+
+
+        elements.AppointmentScheduling.click ();
+        elements.ManageAppointments.click ();
+        elements.PatientID.sendKeys ("sam");
+
+        try {
+            Thread.sleep (3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException (e);
+        }
+        elements.PatientClaer.click ();
+
+
+        Assert.assertTrue (elements.Control.getText ().contains ("Your computer is not set to the right time zone."));
+
+
+    }
+
+
 }
